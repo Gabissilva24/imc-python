@@ -1,0 +1,71 @@
+:root {
+    --roxo-primario:    #6f42c1;
+    --roxo-escuro:      #4b2d87;
+    --roxo-claro:       #9a6dd7;
+    --roxo-muito-claro: #e8d9f5;
+}
+
+/* Navbar */
+.navbar {
+    background-color: var(--roxo-escuro) !important;
+    box-shadow: 0 2px 8px rgba(75, 45, 135, 0.4);
+}
+.navbar-brand, .nav-link {
+    color: #ffffff !important;
+}
+.nav-link:hover, .nav-link.active {
+    color: var(--roxo-muito-claro) !important;
+}
+
+/* Botões */
+.btn-primary {
+    background-color: var(--roxo-primario);
+    border-color: var(--roxo-primario);
+    color: #fff;
+}
+.btn-primary:hover {
+    background-color: var(--roxo-escuro);
+    border-color: var(--roxo-escuro);
+}
+.btn-outline-primary {
+    border-color: var(--roxo-primario);
+    color: var(--roxo-primario);
+}
+.btn-outline-primary:hover {
+    background-color: var(--roxo-primario);
+    color: #fff;
+}
+
+/* Badges e alertas */
+.bg-primary { background-color: var(--roxo-primario) !important; }
+.alert-primary {
+    background-color: var(--roxo-muito-claro);
+    border-color: var(--roxo-claro);
+    color: var(--roxo-escuro);
+}
+.badge.bg-primary { background-color: var(--roxo-primario) !important; }
+
+/* Cabeçalho de tabela */
+.table-primary {
+    background-color: var(--roxo-primario) !important;
+    color: #ffffff;
+}
+
+/* Rodapé */
+footer {
+    background-color: var(--roxo-escuro);
+    color: #e0d0f5;
+    padding: 1.25rem 0;
+    margin-top: 3rem;
+    text-align: center;
+    font-size: 0.875rem;
+}
+
+/* Efeito hover nos cards */
+.card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(111, 66, 193, 0.18);
+}

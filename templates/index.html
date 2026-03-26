@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Início — Sistema IMC{% endblock %}
+
+{% block conteudo %}
+
+<!-- Hero / Jumbotron -->
+<div class="p-5 mb-4 bg-light rounded-3">
+    <h1 class="display-5 fw-bold">⚖️ Sistema de Cálculo de IMC</h1>
+    <p class="lead">
+        O Índice de Massa Corporal (IMC) é uma medida internacional usada para avaliar se uma pessoa
+        está no peso ideal em relação à sua altura. Foi desenvolvido pelo estatístico belga Adolphe Quetelet
+        no século XIX e é amplamente utilizado pela Organização Mundial da Saúde (OMS).
+    </p>
+    <a href="{{ url_for('calcular') }}" class="btn btn-primary btn-lg">➕ Calcular meu IMC</a>
+</div>
+
+<!-- Como é feito o cálculo -->
+<h2 class="mb-3">Como é feito o cálculo</h2>
+<div class="card mb-4">
+    <div class="card-body">
+        <div class="alert alert-primary text-center fs-4">
+            IMC = Peso (kg) &divide; Altura&sup2; (m)
+        </div>
+        <p class="mb-0">
+            <strong>Exemplo:</strong> uma pessoa com 70 kg e 1,75 m de altura tem
+            IMC = 70 &divide; (1,75&sup2;) = 70 &divide; 3,0625 &asymp; 22,86
+        </p>
+    </div>
+</div>
+
+<!-- Tabela de classificação da OMS -->
+<h2 class="mb-3">Tabela de Classificação da OMS</h2>
+<div class="table-responsive mb-4">
+    <table class="table table-bordered table-hover">
+        <thead class="table-primary">
+            <tr>
+                <th>IMC</th>
+                <th>Classificação</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Menor que 18,5</td>
+                <td>Abaixo do peso</td>
+            </tr>
+            <tr>
+                <td>18,5 a 24,9</td>
+                <td>Peso normal</td>
+            </tr>
+            <tr>
+                <td>25,0 a 29,9</td>
+                <td>Sobrepeso</td>
+            </tr>
+            <tr>
+                <td>30,0 a 34,9</td>
+                <td>Obesidade grau I</td>
+            </tr>
+            <tr>
+                <td>35,0 a 39,9</td>
+                <td>Obesidade grau II</td>
+            </tr>
+            <tr>
+                <td>40,0 ou mais</td>
+                <td>Obesidade grau III (mórbida)</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Cards informativos -->
+<div class="row g-4 mb-4">
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">📊 Por que monitorar?</h5>
+                <p class="card-text">
+                    Monitorar o IMC regularmente ajuda a identificar riscos à saúde relacionados ao peso,
+                    como doenças cardiovasculares, diabetes tipo 2 e hipertensão. Manter-se dentro da faixa
+                    saudável contribui para uma vida mais longa e com mais qualidade.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">⚠️ Limitações do IMC</h5>
+                <p class="card-text">
+                    O IMC é uma estimativa simples e não distingue massa muscular de gordura corporal.
+                    Atletas, por exemplo, podem ter IMC elevado sem excesso de gordura. Idosos e crianças
+                    também requerem avaliações complementares para uma análise mais precisa.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">👨‍⚕️ Consulte um profissional</h5>
+                <p class="card-text">
+                    O IMC é apenas um indicador inicial. Para uma avaliação completa do seu estado de saúde,
+                    consulte um médico ou nutricionista. Apenas um profissional habilitado pode recomendar
+                    mudanças na dieta, exercícios e tratamentos adequados para o seu perfil.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

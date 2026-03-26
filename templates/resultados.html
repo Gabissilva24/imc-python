@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Resultados — Sistema IMC{% endblock %}
+
+{% block conteudo %}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>📋 Resultados de Cálculos</h2>
+    <div>
+        <span class="badge bg-primary fs-6">{{ total }} registro(s)</span>
+        <a href="{{ url_for('calcular') }}" class="btn btn-primary ms-2">➕ Novo Cálculo</a>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover align-middle">
+        <thead class="table-primary">
+            <tr>
+                <th>#</th>
+                <th>Nome</th>
+                <th>Peso (kg)</th>
+                <th>Altura (m)</th>
+                <th>IMC</th>
+                <th>Classificação</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for item in calculos %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ item.nome }}</td>
+                <td>{{ item.peso }}</td>
+                <td>{{ item.altura }}</td>
+                <td>{{ "%.2f" | format(item.imc) }}</td>
+                <td>
+                    {% if item.classificacao == 'Peso normal' %}
+                    <span class="badge bg-success">
+                        {{ item.classificacao }}
+                    </span>
+
+
+                    {% elif item.classificacao == 'Abaixo do peso' %}
+                    <span class="badge bg-warning text-dark">
+                        {{ item.classificacao }}
+                    </span>
+
+                    {% elif item.classificacao == 'Sobrepeso' %}
+                    <span class="badge bg-warning text-dark">
+                        {{ item.classificacao }}
+                    </span>
+
+                    {% elif item.classificacao == 'Obesidade grau I' %}
+                    <span class="badge bg-danger">
+                        {{ item.classificacao }}
+                    </span>
+
+                    {% elif item.classificacao == 'Obesidade grau II' %}
+                    <span class="badge bg-danger">
+                        {{ item.classificacao }}
+                    </span>
+
+                    {% elif item.classificacao == 'Obesidade grau III' %}
+                    <span class="badge bg-danger">
+                        {{ item.classificacao }}
+                    </span>
+
+                    {% else %}
+                    <span class="badge bg-secondary">
+                        {{ item.classificacao }}
+                    </span>
+
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+
+
+        </tbody>
+    </table>
+</div>
+
+<a href="{{ url_for('index') }}" class="btn btn-outline-primary">← Voltar ao Início</a>
+
+{% endblock %}
