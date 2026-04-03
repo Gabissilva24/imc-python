@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Usuários — Conexão MySQL{% endblock %}
+
+{% block conteudo %}
+
+<h1>Lista de usuários</h1>
+<ol>
+    {% for usuario in usuarios %}
+        <li>{{ usuario.nome }} | {{ usuario.email }}</li>
+    {% endfor %}
+</ol>
+
+{% endblock %}
