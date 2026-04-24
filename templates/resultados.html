@@ -26,48 +26,49 @@
         </thead>
         <tbody>
 
-            {% for item in calculos %}
+            {% for calc in calculos %}
+            {% set imc = calcular(calc['peso'], calc['altura'] ) %}
             <tr>
-                <td>{{ loop.index }}</td>
-                <td>{{ item.nome }}</td>
-                <td>{{ item.peso }}</td>
-                <td>{{ item.altura }}</td>
-                <td>{{ "%.2f" | format(item.imc) }}</td>
+                <td>{{ calc['id_calculo'] }}</td>
+                <td>{{ calc['nome'] }}</td>
+                <td>{{ calc['peso'] }}</td>
+                <td>{{ calc['altura'] }}</td>
+                <td>{{ imc }}</td>
                 <td>
-                    {% if item.classificacao == 'Peso normal' %}
+                    {% if calc.classificacao == 'Peso normal' %}
                     <span class="badge bg-success">
-                        {{ item.classificacao }}
+                        {{ classificacao(imc) }}
                     </span>
 
 
-                    {% elif item.classificacao == 'Abaixo do peso' %}
+                    {% elif calc.classificacao == 'Abaixo do peso' %}
                     <span class="badge bg-warning text-dark">
-                        {{ item.classificacao }}
+                        {{ classificacao(imc) }}
                     </span>
 
-                    {% elif item.classificacao == 'Sobrepeso' %}
+                    {% elif calc.classificacao == 'Sobrepeso' %}
                     <span class="badge bg-warning text-dark">
-                        {{ item.classificacao }}
+                        {{ classificacao(imc) }}
                     </span>
 
-                    {% elif item.classificacao == 'Obesidade grau I' %}
+                    {% elif calc.classificacao == 'Obesidade grau I' %}
                     <span class="badge bg-danger">
-                        {{ item.classificacao }}
+                        {{ classificacao(imc) }}
                     </span>
 
-                    {% elif item.classificacao == 'Obesidade grau II' %}
+                    {% elif calc.classificacao == 'Obesidade grau II' %}
                     <span class="badge bg-danger">
-                        {{ item.classificacao }}
+                        {{ classificacao(imc) }}
                     </span>
 
-                    {% elif item.classificacao == 'Obesidade grau III' %}
+                    {% elif calc.classificacao == 'Obesidade grau III' %}
                     <span class="badge bg-danger">
-                        {{ item.classificacao }}
+                        {{ classificacao(imc) }}
                     </span>
 
                     {% else %}
                     <span class="badge bg-secondary">
-                        {{ item.classificacao }}
+                        {{ classificacao(imc) }}
                     </span>
 
                     {% endif %}
