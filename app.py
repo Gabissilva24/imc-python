@@ -14,6 +14,18 @@ def classificacao(imc):
     elif imc < 25:
         classificacao = 'Peso normal'
 
+    elif imc < 30:
+        classificacao = 'Sobrepeso'
+
+    elif imc < 35.0:
+        classificacao = 'Obesidade grau I'
+
+    elif imc < 40.0:
+        classificacao = 'Obesidade grau II'
+
+    elif imc >= 40.0:
+        classificacao = 'Obesidade grau III'
+
     else:
         classificacao = 'Erro no cálculo do IMC'
 
