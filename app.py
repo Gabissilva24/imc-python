@@ -157,6 +157,27 @@ def editar_imc(id):
             flash(f'Erro ao atualizar: {e}', 'danger')
             return render_template('formulario.html', dados=dados)
 
+@app.route('/calcular/excluir/<int:id>', methods=['POST'])
+def excluir_imc(id):
+
+    try:
+
+        sql = '''
+            UPDATE calculos SET
+            deletado_em = NOW()
+            WHERE id_calculo = %s;
+        '''
+
+        execute_query(sql, (id,))
+
+        flash('IMC excluído com sucesso!', 'warning')
+
+    except Exception as e:
+
+        flash(f'Erro ao excluir: {e}', 'danger')
+
+    return redirect(url_for('resultados'))
+
     return render_template('formulario.html', dados=dados)
 
 
