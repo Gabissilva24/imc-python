@@ -77,9 +77,17 @@
 
                 <td>
                     <a href="{{ url_for('editar_imc', id=calc['id_calculo']) }}" class="btn btn -sm btn-warning">Editar</a>
-                </td>
-                <td>
-                    <a href="{{ url_for('excluir_imc', id=calc['id_calculo']) }}" class="btn btn -sm btn-danger">Excluir</a>
+
+                    <button data-bs-toggle="modal" data-bs-target="#deleteModal"
+                    data-action="{{ url_for('deletar_fisico', id=calc['id_calculo']) }}" data-type="fisico" data-nome="{{ calc['nome'] }}" type="button" class="btn btn-sm btn-danger ms-1">
+                        Deletar
+                    </button>
+
+                    <button data-bs-toggle="modal" data-bs-target="#deleteModal"
+                    data-action="{{ url_for('deletar_logico', id=calc['id_calculo']) }}" data-type="logico" data-nome="{{ calc['nome'] }}" 
+                        type="button" class="btn btn-sm btn-outline-danger ms-1">
+                        Esconder
+                    </button>
                 </td>
             </tr>
             {% endfor %}
@@ -90,5 +98,60 @@
 </div>
 
 <a href="{{ url_for('index') }}" class="btn btn-outline-primary">← Voltar ao Início</a>
+
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-danger text-light">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">CONFIRMAR EXCLUSÃO?</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="deleteForm" action="" method="post">
+
+            <div class="modal-body">
+                <p id="bodyText"> TEM CERTEZA QUE DESEJA EXCLUIR ESTE REGISTRO?</p>
+            </div>
+
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-danger">SIM! Desejo excluir...</button>
+            </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+  <script>
+
+    DOCUMENT.addEventListener("DOMContentLoadded", function () { 
+
+    // Busca a DIV do modal pelo ID dela e cria uma variavel com seus dados
+    const deleteModal = document.getElementById('deleteModal')
+
+    deleteModal.addEventListener('shows.bs.modal', function(event){
+        const button = event.relatedTarget;
+
+        // Busca os dados do botão clicado
+        const actionURL = button.getAttribute('data-action');
+        const deleteType = button.getAttribute('data-type');
+        const nome = button.getAttribute('data-nome');
+
+        // Configura a Rota no form do Modal
+        const form = deleteModal.querySelector('#deleteForm');
+        form.action = actionURL;
+
+        // Atualiza o texto do modal
+        const bodyText = deleteModal.querySelector('#bodyText');
+        bodyText.innerHTML = `Tem certeza que deseja realizar o <b>Delete ${deleteType}</b> do <b>${nome}</b>`;
+    });
+});
+
+  </script>
+
 
 {% endblock %}
